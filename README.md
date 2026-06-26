@@ -1,13 +1,13 @@
 ---
 type: reference
-title: LLM Wiki（通用模板）
+title: kloom（通用模板）
 description: OKF v0.1 + 卡帕西 LLM Wiki（v2）通用模板。/init-wiki 或 clone 实例化成任意主题的知识库。
 okf_version: "0.1"
 tags: [reference, okf, llm-wiki, template]
 timestamp: 2026-06-25T00:00:00Z
 ---
 
-# LLM Wiki（通用模板）
+# kloom（通用模板）
 
 一个**主题无关**、由 LLM 维护的个人知识库模板。双重身份：
 

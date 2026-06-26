@@ -2,7 +2,7 @@
 okf_version: "0.1"
 ---
 
-# {{Wiki 名称}}
+# kloom
 
 OKF v0.1 合规 bundle + 卡帕西 LLM Wiki（v2）。用 Web Clipper 收集原始资料到 `raw/`，由 LLM 维护 `wiki/`。
 

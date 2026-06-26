@@ -1,14 +1,14 @@
 ---
 type: reference
-title: LLM Wiki 模板 · 推广介绍
+title: kloom · 推广介绍
 description: 一个会自己维护的个人知识库——开箱即用的 LLM Wiki 模板，面向推广介绍。
 okf_version: "0.1"
 tags: [reference, promo, llm-wiki]
 timestamp: 2026-06-26T00:00:00Z
 ---
 
-# LLM Wiki 模板
-### 一个会自己维护的个人知识库
+# kloom
+### 一个会自己维护的知识库 · _Weave your knowledge_
 
 > **你只管收集资料和提问，LLM 负责所有枯燥的维护**——总结、交叉引用、更新、查矛盾、防过期。
 > 30 分钟，把一堆散落的文章/笔记/论文，变成一个**越用越聪明、处处可追溯**的知识库。

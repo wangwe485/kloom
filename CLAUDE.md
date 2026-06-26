@@ -1,13 +1,13 @@
 ---
 type: schema
-title: LLM Wiki — Agent Schema（通用模板）
+title: kloom — Agent Schema（通用模板）
 description: OKF v0.1 合规 + 卡帕西 LLM Wiki（v2 生命周期、类型化关系、raw 更新处理）的维护规则。通用模板，实例化时按主题定制 §2。
 okf_version: "0.1"
 tags: [schema, okf, llm-wiki, template]
 timestamp: 2026-06-25T00:00:00Z
 ---
 
-# LLM Wiki — Agent Schema
+# kloom — Agent Schema
 
 本仓库同时是一个 **OKF v0.1 合规 bundle** 和一个 **卡帕西 LLM Wiki**，
 并吸收了 **LLM Wiki v2**（社区扩展）的三层高价值增量：

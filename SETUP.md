@@ -1,14 +1,14 @@
 ---
 type: playbook
-title: 从零搭建一个 LLM Wiki
+title: 从零搭建一个 kloom 知识库
 description: 从本模板实例化一个新 LLM Wiki 的完整步骤（约 30 分钟）。
 tags: [playbook, setup]
 timestamp: 2026-06-25T00:00:00Z
 ---
 
-# 从零搭建一个 LLM Wiki（约 30 分钟）
+# 从零搭建一个 kloom 知识库（约 30 分钟）
 
-前提：本模板已在 `E:\ai\llm-wiki-template`（或你 clone 的位置）。
+前提：本模板已在 `E:\ai\kloom`（或你 clone 的位置）。
 
 ## 1. 实例化（5 分钟，二选一）
 
@@ -17,7 +17,7 @@ timestamp: 2026-06-25T00:00:00Z
 把 `.claude/commands/init-wiki.md` 复制到全局命令目录（任意目录都能调）：
 
 ```bash
-cp /e/ai/llm-wiki-template/.claude/commands/init-wiki.md ~/.claude/commands/
+cp /e/ai/kloom/.claude/commands/init-wiki.md ~/.claude/commands/
 ```
 
 然后在任意目录启动 `claude`，运行：
@@ -31,7 +31,7 @@ agent 会：复制模板 → 按主题生成领域 type → 改 `CLAUDE.md §2`/
 **B. 手动复制 + 改**
 
 ```bash
-cp -r /e/ai/llm-wiki-template /e/ai/my-new-wiki
+cp -r /e/ai/kloom /e/ai/my-new-wiki
 rm -rf /e/ai/my-new-wiki/.git
 cd /e/ai/my-new-wiki && git init -q && git branch -M main
 ```
