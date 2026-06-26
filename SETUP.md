@@ -8,7 +8,7 @@ timestamp: 2026-06-25T00:00:00Z
 
 # 从零搭建一个 LLM Wiki（约 30 分钟）
 
-前提：本模板已在 `E:\personal\llm-wiki-template`（或你 clone 的位置）。
+前提：本模板已在 `E:\ai\llm-wiki-template`（或你 clone 的位置）。
 
 ## 1. 实例化（5 分钟，二选一）
 
@@ -17,13 +17,13 @@ timestamp: 2026-06-25T00:00:00Z
 把 `.claude/commands/init-wiki.md` 复制到全局命令目录（任意目录都能调）：
 
 ```bash
-cp /e/personal/llm-wiki-template/.claude/commands/init-wiki.md ~/.claude/commands/
+cp /e/ai/llm-wiki-template/.claude/commands/init-wiki.md ~/.claude/commands/
 ```
 
 然后在任意目录启动 `claude`，运行：
 
 ```
-/init-wiki E:\personal\my-new-wiki <主题描述，如"医疗合规">
+/init-wiki E:\ai\my-new-wiki <主题描述，如"医疗合规">
 ```
 
 agent 会：复制模板 → 按主题生成领域 type → 改 `CLAUDE.md §2`/示例 → `git init`。
@@ -31,9 +31,9 @@ agent 会：复制模板 → 按主题生成领域 type → 改 `CLAUDE.md §2`/
 **B. 手动复制 + 改**
 
 ```bash
-cp -r /e/personal/llm-wiki-template /e/personal/my-new-wiki
-rm -rf /e/personal/my-new-wiki/.git
-cd /e/personal/my-new-wiki && git init -q && git branch -M main
+cp -r /e/ai/llm-wiki-template /e/ai/my-new-wiki
+rm -rf /e/ai/my-new-wiki/.git
+cd /e/ai/my-new-wiki && git init -q && git branch -M main
 ```
 
 然后手动改 `CLAUDE.md §2`（填领域 type）、§4 示例、`README.md`/`index.md` 主题描述。
@@ -53,7 +53,7 @@ cd /e/personal/my-new-wiki && git init -q && git branch -M main
 
 ```bash
 npm install -g @anthropic-ai/claude-code
-cd /e/personal/my-new-wiki
+cd /e/ai/my-new-wiki
 claude
 ```
 
