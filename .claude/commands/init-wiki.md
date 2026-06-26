@@ -12,7 +12,7 @@ argument-hint: <新 wiki 路径> <主题描述>
    - `CLAUDE.md §2 领域 type`：根据主题生成 5–8 个实体 type（小写 kebab-case，带一行说明 + 示例），替换占位注释 `<!-- /init-wiki 在此插入... -->`
    - `CLAUDE.md §4 示例`：换成该主题的实体 frontmatter 示例
    - `CLAUDE.md` 引言、frontmatter description、`README.md`、根 `index.md`、`wiki/index.md` 的主题描述与分类标题
-4. `log.md` 记一条 `* **Initialization**: 从 llm-wiki-template 实例化 <主题> wiki`（今日日期）。
+4. **重置 `log.md`**：清空模板的历史条目（如模板创建记录），重写为只含新 wiki 的一条 `* **Initialization**: ...`（今日日期）—— 模板的 log 历史不应带入新 wiki。
 5. **OKF conformance 自检**：确认新 wiki 每个 `.md` 有合法 frontmatter + 非空 `type`。
 6. 报告：新 wiki 路径、生成的领域 type 清单、下一步（照 `SETUP.md` 配 Obsidian + Claude Code + 首次 ingest）。
 
