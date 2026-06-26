@@ -17,7 +17,7 @@ relations: []    # 用强谓词（part-of/operates/issued-by/serves/competes-wit
 
 <!--
   领域实体类（按需修改 type）—— /init-wiki 实例化时按主题生成，跨领域示例：
-    金融/Web3:  protocol / project / person / token / organization
+    金融:       bank / fund / instrument / market / trade
     医疗合规:   regulation / hospital / device / drug-trial / authority
     客户/CRM:   customer / account / contact / deal / interaction
     技术工程:   service / library / api / team / incident

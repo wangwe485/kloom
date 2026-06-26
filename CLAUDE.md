@@ -59,7 +59,7 @@ OKF 不注册 type、consumer 要容忍未知 type。本 wiki 的 type 分两层
 **领域 type（本 wiki 主题专属，`/init-wiki` 时生成）**：
 
 > 实例化时由 agent 根据主题生成实体类型，填入下方。下面是跨领域示例，**实例化时替换**：
-> - 金融 / Web3：`protocol` / `project` / `person` / `token` / `organization`
+> - 金融：`bank` / `fund` / `instrument` / `market` / `trade`
 > - 医疗合规：`regulation` / `hospital` / `device` / `drug-trial` / `authority`
 > - 客户 / CRM：`customer` / `account` / `contact` / `deal` / `interaction`
 > - 技术 / 工程：`service` / `library` / `api` / `team` / `incident`

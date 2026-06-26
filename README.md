@@ -14,7 +14,7 @@ timestamp: 2026-06-25T00:00:00Z
 - **OKF v0.1 合规 bundle** —— 可被 Google Knowledge Catalog、OKF visualizer 及任何 OKF 工具消费。
 - **卡帕西 LLM Wiki（含 v2 扩展）** —— 三层架构 + 三操作 + 记忆生命周期 + 类型化关系 + raw 更新处理。
 
-实例化成任意主题：Web3、医疗合规、客户 CRM、技术工程……
+实例化成任意主题：金融研究、医疗合规、客户 CRM、技术工程……
 
 ## 三层架构
 
