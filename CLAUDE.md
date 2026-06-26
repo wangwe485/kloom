@@ -180,11 +180,29 @@ OKF §5.3 规定正文链接**无类型**；为合规，正文继续用标准 ma
 
 ```
 relations:
-  - type: depends-on      # uses / depends-on / contradicts / caused / fixed / supersedes / related-to / part-of / competes-with / regulated-by
+  - type: depends-on      # 谓词见下表；优先精确谓词，related-to 仅兜底
     target: /wiki/entities/xxx.md   # bundle-relative 绝对路径
     confidence: 0.9
     note: 
 ```
+
+**谓词清单**（v2.1）—— 优先精确谓词，`related-to` 仅兜底；新页禁止用 `related-to` 偷懒：
+
+| 谓词 | 语义 | 方向 | 典型 |
+|---|---|---|---|
+| `depends-on` | 硬依赖 | A→B | 产品→底层服务 |
+| `uses` | 使用 | A→B | 实体→工具/服务 |
+| `enables` | 使能/参与实现 | A→B | 组件→能力 |
+| `regulates` / `regulated-by` | 监管 / 受监管 | 规则↔对象 | 法规↔业务 |
+| `part-of` / `operates` | 隶属 / 运营 | 子↔父 | 子产品↔母体 |
+| `issued-by` / `issues` | 发行 | 资产↔发行方 | 凭证↔机构 |
+| `serves` | 供基础设施/服务 | 供应商→客户 | 供应商→客户 |
+| `implements` | 实现标准 | 工具→规则 | 实现↔规范 |
+| `competes-with` | 竞争 | A↔B | 同类竞品 |
+| `provides-evidence-for` | 溯源支持 | source→对象 | source→concept |
+| `compares` | 对比 | synthesis→对象 | synthesis→实体 |
+| `contradicts` / `caused` / `fixed` / `supersedes` | 生命周期事件 | — | 矛盾/因果/修正/取代 |
+| `related-to` | 泛相关（兜底）| — | 真无精确语义时（如双向冗余、互补）|
 
 ingest / query / lint 时维护 `relations`：抽取实体间关系、补全缺失关系、发现矛盾时加
 `type: contradicts` 边。"X 影响什么"类查询沿 `depends-on`/`uses` 边遍历，而非仅关键词搜索。
