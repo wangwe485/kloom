@@ -1,59 +1,67 @@
 ---
 type: reference
-title: kloom（通用模板）
-description: OKF v0.1 + 卡帕西 LLM Wiki（v2）通用模板。/init-wiki 或 clone 实例化成任意主题的知识库。
+title: kloom · Claude Code Plugin
+description: kloom——一个会自己维护的知识库，打包为 Claude Code plugin。/kloom:init-wiki 任意主题开箱即用。
 okf_version: "0.1"
-tags: [reference, okf, llm-wiki, template]
-timestamp: 2026-06-25T00:00:00Z
+tags: [reference, plugin, kloom]
+timestamp: 2026-06-26T00:00:00Z
 ---
 
-# kloom（通用模板）
+# kloom
 
-一个**主题无关**、由 LLM 维护的个人知识库模板。双重身份：
+> _Weave your knowledge_ —— 把 raw 资料自动织成有组织、可追溯、带生命周期的知识图谱。
 
-- **OKF v0.1 合规 bundle** —— 可被 Google Knowledge Catalog、OKF visualizer 及任何 OKF 工具消费。
-- **卡帕西 LLM Wiki（含 v2 扩展）** —— 三层架构 + 三操作 + 记忆生命周期 + 类型化关系 + raw 更新处理。
+一个会自己维护的知识库，打包为 **Claude Code plugin**。基于 OKF v0.1 + 卡帕西 LLM Wiki + v2 生命周期。
+完整介绍见 [templates/PROMO.md](templates/PROMO.md)。
 
-实例化成任意主题：金融研究、医疗合规、客户 CRM、技术工程……
+## 安装
 
-## 三层架构
+```bash
+# 方式 1：从 marketplace（内部分发推荐）
+claude plugin marketplace add <本仓库 git 地址或本地路径>
+claude plugin install kloom
 
-| 层 | 目录 | 谁写 | 性质 |
-|---|---|---|---|
-| Raw sources | `raw/` | 人类（收集） | 不可变（对 agent），真相来源 |
-| The wiki | `wiki/` | LLM（专属） | 人类只读 |
-| The schema | `CLAUDE.md` | 人 + LLM 共同演进 | 维护纪律 |
+# 方式 2：本地开发/试用
+claude --plugin-dir /e/ai/kloom
+```
 
-核心边界：`raw/` 只往里丢、永不改（agent 视角）；`wiki/` 只用眼看、不用手写。
-
-## 快速开始
-
-详见 [SETUP.md](SETUP.md)（从零搭建，约 30 分钟）。最简三步：
-
-1. **实例化**：`/init-wiki <新路径> <主题>`（推荐，按主题智能生成领域 type）
-   或 `git clone` 本模板后手动改 `CLAUDE.md §2`。
-2. **打开**：Obsidian → `Open folder as vault` → 选新 wiki 目录。
-3. **启动 agent**：`cd <新 wiki> && claude`，然后 `/add-source raw/articles/xxx.md` 开始 ingest。
-
-## 内置命令
+## 命令
 
 | 命令 | 用途 |
 |---|---|
-| `/ask-wiki <问题>` | 查询知识库 |
-| `/add-source <raw路径>` | ingest 新增源文件 |
-| `/update-raw <raw路径>` | 处理 raw 更新（增量 re-ingest） |
-| `/sync-raw [文件]` | 建/刷新 raw_hash 基线、检测 drift |
+| `/kloom:init-wiki <新路径> <主题>` | 从模板生成新 wiki（agent 按主题定制领域 type） |
+| `/kloom:ask-wiki <问题>` | 查询 wiki |
+| `/kloom:add-source <raw路径>` | ingest 新资料 |
+| `/kloom:update-raw <raw路径>` | 处理 raw 更新（增量 re-ingest） |
+| `/kloom:sync-raw [文件]` | 建/刷新 raw_hash 基线、检测 drift |
+| `/kloom:wiki-status` | 显示 wiki 当前状态 |
 
-> `/init-wiki` 是元命令（从本模板生成新 wiki），使用前需复制到全局 `~/.claude/commands/`，见 SETUP.md。
+## 3 步上手
 
-## OKF 合规要点
+```bash
+# 1. 任意目录生成新 wiki（agent 按主题定制领域 type）
+/kloom:init-wiki ~/my-wiki 客户CRM
 
-- 每个 `.md` 都有 YAML frontmatter 且含非空 `type`（合规唯一硬要求）。
-- 链接用标准 markdown（bundle-relative 绝对路径优先），不用 `[[ ]]`。
-- 根 `index.md` 声明 `okf_version: "0.1"`；断链被容忍。
+# 2. Obsidian 打开 ~/my-wiki + 配 Claude Code（见生成的 SETUP.md）
 
-## 来源
+# 3. 喂资料，LLM 自动建知识图谱
+/kloom:add-source raw/articles/xxx.md
+```
 
-- 模式定义：[Karpathy — LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
-- v2 扩展：[LLM Wiki v2（rohitg00）](https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2)
-- 格式规范：[OKF v0.1 SPEC](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+生成的 wiki **自带**：三层架构、`CLAUDE.md` schema、页面模板、SessionStart hook（自动注入状态简报）、OKF 合规。
+
+## 结构
+
+```
+kloom/
+├── .claude-plugin/plugin.json   manifest（name: kloom）
+├── commands/                     6 个 slash 命令 → /kloom:*
+├── templates/                    生成 wiki 时复制的全部文件（${CLAUDE_PLUGIN_ROOT}/templates）
+└── marketplace.json              内部分发清单
+```
+
+## 更多
+
+- 完整介绍：[templates/PROMO.md](templates/PROMO.md)
+- 搭建细节：生成 wiki 后看其 `SETUP.md`
+- 方法论出处：见 PROMO.md 底部

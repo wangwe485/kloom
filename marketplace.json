@@ -1,0 +1,13 @@
+{
+  "name": "kloom-marketplace",
+  "owner": {
+    "name": "kloom"
+  },
+  "plugins": [
+    {
+      "name": "kloom",
+      "source": "./",
+      "description": "一个会自己维护的知识库模板——把 raw 资料自动织成有组织、可追溯、带生命周期的知识图谱。"
+    }
+  ]
+}
