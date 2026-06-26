@@ -1,10 +1,8 @@
 {
   "name": "kloom",
-  "displayName": "kloom",
   "description": "一个会自己维护的知识库模板——把 raw 资料自动织成有组织、可追溯、带生命周期的知识图谱。基于 OKF v0.1 + 卡帕西 LLM Wiki + v2 生命周期。",
   "version": "1.0.0",
   "author": {
     "name": "kloom"
-  },
-  "commands": "./commands/"
+  }
 }
