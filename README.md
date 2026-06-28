@@ -14,33 +14,45 @@ timestamp: 2026-06-26T00:00:00Z
 一个会自己维护的知识库，打包为 **Claude Code plugin**。基于 OKF v0.1 + 卡帕西 LLM Wiki + v2 生命周期。
 完整介绍见 [PROMO.md](PROMO.md)。
 
-## 安装与更新
+> 更新命令统一用**限定名** `kloom@kloom-marketplace`（裸 `kloom` 在部分版本会报 "not found"）。
 
-### 方式 A：从 GitHub marketplace（推荐，给使用者）
+### 安装（三选一）
+
+**方式 A — GitHub marketplace（推荐）**
 
 ```bash
-# 安装
 claude plugin marketplace add wangwe485/kloom
 claude plugin install kloom@kloom-marketplace
-
-# 更新（两步缺一不可：先刷缓存，再应用）
-claude plugin marketplace update kloom-marketplace   # 从 GitHub 拉最新提交到本地缓存
-claude plugin update kloom                            # 应用新版（提示 restart 后重启会话生效）
 ```
 
-### 方式 B：本地文件夹（给开发 / 试用 / 离线）
+**方式 B — 本地目录持久安装（离线 / 内网；装上后跨会话保留）**
 
 ```bash
-# 安装：挂载本地仓库，仅当前会话有效
-git clone git@github.com:wangwe485/kloom.git   # 或直接把整个 kloom 文件夹拷到本地
-claude --plugin-dir <本地 kloom 路径>
-
-# 更新
-cd <本地 kloom 路径> && git pull                 # clone 来的用 pull；直接拷的则重新覆盖文件夹
-# 退出并重启 claude 会话即生效（--plugin-dir 每次启动都重新读取，无需 plugin update）
+git clone git@github.com:wangwe485/kloom.git    # 或直接把整个 kloom 文件夹拷到本地
+claude plugin marketplace add <本地 kloom 路径>   # 把本地目录当 marketplace
+claude plugin install kloom@kloom-marketplace
 ```
 
-> 两种方式的命令前缀都是 `/kloom:`；版本号见 [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json)，发布点见 git tag `kloom--v*`。
+**方式 C — `--plugin-dir`（仅当前会话，开发 / 临时试用）**
+
+```bash
+claude --plugin-dir <本地 kloom 路径>             # 不写入配置，退出即失效
+```
+
+### 更新
+
+**方式 A / B（marketplace 安装）** —— 两步缺一不可：先刷源，再应用：
+
+```bash
+claude plugin marketplace update kloom-marketplace      # A 从 GitHub 拉、B 重读本地目录
+claude plugin update kloom@kloom-marketplace            # 应用新版（提示 restart 后重启会话生效）
+```
+
+> 方式 B 若是 `git clone` 来的，先 `cd <本地 kloom 路径> && git pull` 拉到最新，再跑上面两步。
+
+**方式 C（`--plugin-dir`）** —— 改文件后**退出并重启会话**即生效，无需 `plugin update`。
+
+> 命令前缀均为 `/kloom:`；版本号见 [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json)，发布点见 git tag `kloom--v*`。
 
 ## 命令
 
