@@ -139,7 +139,7 @@ relations:
 - 无入链的孤儿页、被提及但缺页的重要概念（断链）
 - 缺失的交叉引用 / 未补全的 `relations`
 - 可用网络搜索填补的数据缺口
-- **OKF conformance**：知识层每个 `.md`（根知识文档 + `wiki/` + `raw/*.md`）是否有合法 frontmatter 与非空 `type`（合规硬要求）；`.claude/` 是工具配置，不计入
+- **OKF conformance**：知识层每个 `.md`（根知识文档 + `wiki/` + `raw/*.md`）是否有合法 frontmatter 与非空 `type`（合规硬要求）；`.claude/` 是工具配置，不计入。可运行 `node .claude/hooks/lib/conformance.mjs` 自动检查（非空 type，退出码 0/1）
 
 质量自愈（v2）：对每页打 0–1 `quality` 判断（结构 / 引源 / 一致性），<0.6 标记待修；
 可自动修的（孤儿页补链、断链修复、stale 标记）直接修，修完记进 log。

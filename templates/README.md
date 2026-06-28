@@ -26,25 +26,25 @@ timestamp: 2026-06-25T00:00:00Z
 
 核心边界：`raw/` 只往里丢、永不改（agent 视角）；`wiki/` 只用眼看、不用手写。
 
-## 快速开始
+## 开始使用
 
-详见 [SETUP.md](SETUP.md)（从零搭建，约 30 分钟）。最简三步：
+本 wiki 已由 `/kloom:init-wiki` 生成。详见 [SETUP.md](SETUP.md)（约 15 分钟）。三步：
 
-1. **实例化**：`/init-wiki <新路径> <主题>`（推荐，按主题智能生成领域 type）
-   或 `git clone` 本模板后手动改 `CLAUDE.md §2`。
-2. **打开**：Obsidian → `Open folder as vault` → 选新 wiki 目录。
-3. **启动 agent**：`cd <新 wiki> && claude`，然后 `/add-source raw/articles/xxx.md` 开始 ingest。
+1. **打开**：Obsidian → `Open folder as vault` → 选本目录（OKF 合规默认值已写入 `.obsidian/`）。
+2. **启动 agent**：`cd <本目录> && claude`（自动读 `CLAUDE.md`，进入维护者角色）。
+3. **首次 ingest**：`/kloom:add-source raw/articles/xxx.md` 开始摄取。
 
 ## 内置命令
 
 | 命令 | 用途 |
 |---|---|
-| `/ask-wiki <问题>` | 查询知识库 |
-| `/add-source <raw路径>` | ingest 新增源文件 |
-| `/update-raw <raw路径>` | 处理 raw 更新（增量 re-ingest） |
-| `/sync-raw [文件]` | 建/刷新 raw_hash 基线、检测 drift |
+| `/kloom:ask-wiki <问题>` | 查询知识库 |
+| `/kloom:add-source <raw路径>` | ingest 新增源文件 |
+| `/kloom:update-raw <raw路径>` | 处理 raw 更新（增量 re-ingest） |
+| `/kloom:sync-raw [文件]` | 建/刷新 raw_hash 基线、检测 drift |
+| `/kloom:wiki-status` | 显示 wiki 当前状态 |
 
-> `/init-wiki` 是元命令（从本模板生成新 wiki），使用前需复制到全局 `~/.claude/commands/`，见 SETUP.md。
+> 这些命令由 kloom 插件提供（`claude plugin install kloom`），在任意已安装会话中以 `/kloom:` 前缀可用。
 
 ## OKF 合规要点
 

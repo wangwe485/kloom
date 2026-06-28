@@ -12,7 +12,7 @@ timestamp: 2026-06-26T00:00:00Z
 > _Weave your knowledge_ —— 把 raw 资料自动织成有组织、可追溯、带生命周期的知识图谱。
 
 一个会自己维护的知识库，打包为 **Claude Code plugin**。基于 OKF v0.1 + 卡帕西 LLM Wiki + v2 生命周期。
-完整介绍见 [templates/PROMO.md](templates/PROMO.md)。
+完整介绍见 [PROMO.md](PROMO.md)。
 
 ## 安装
 
@@ -22,7 +22,7 @@ claude plugin marketplace add <本仓库 git 地址或本地路径>
 claude plugin install kloom
 
 # 方式 2：本地开发/试用
-claude --plugin-dir /e/ai/kloom
+claude --plugin-dir <本地 kloom 仓库路径>
 ```
 
 ## 命令
@@ -62,6 +62,6 @@ kloom/
 
 ## 更多
 
-- 完整介绍：[templates/PROMO.md](templates/PROMO.md)
+- 完整介绍：[PROMO.md](PROMO.md)
 - 搭建细节：生成 wiki 后看其 `SETUP.md`
 - 方法论出处：见 PROMO.md 底部

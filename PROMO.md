@@ -94,10 +94,10 @@ timestamp: 2026-06-26T00:00:00Z
 用本模板真实跑通（非演示数据）：
 
 ```
-/init-wiki E:\ai\test-wiki 客户CRM
+/kloom:init-wiki ~/wiki/crm 客户CRM
   → agent 自动生成 7 个 CRM 领域 type（customer/account/contact/lead/deal/interaction/campaign）
 
-/add-source raw/articles/CRM_简介.md
+/kloom:add-source raw/articles/CRM_简介.md
   → LLM 自动产出 13 个页面：
      • 1 source（摘要 + 溯源 raw_hash）
      • 7 concept（CRM / 运营型 / 分析型 / 协作型 / SFA / RFM / 选型）
@@ -145,26 +145,32 @@ timestamp: 2026-06-26T00:00:00Z
 
 ---
 
-## 🚀 3 步上手（约 30 分钟）
+## 🚀 3 步上手（约 20 分钟）
 
 ```bash
 # 1. 实例化（agent 按你的主题生成领域结构，5 分钟）
-/init-wiki <路径> <主题，如"医疗合规">
+/kloom:init-wiki <路径> <主题，如"医疗合规">
 
-# 2. 配 Obsidian + Claude Code（10 分钟，见 SETUP.md）
+# 2. 配 Obsidian + Claude Code（10 分钟，见生成的 SETUP.md）
 
 # 3. 喂资料，LLM 自动建知识图谱
-/add-source raw/articles/你的资料.md
+/kloom:add-source raw/articles/你的资料.md
 ```
 
-日常：`/ask-wiki <问题>` 查询、`/update-raw` 处理资料更新、定期 `lint` 体检。
+日常：`/kloom:ask-wiki <问题>` 查询、`/kloom:update-raw` 处理资料更新、定期 `lint` 体检。
 
 ---
 
 ## 📥 获取
 
-- **当前**：本地模板，`git clone` 即用（含完整 schema / 模板 / 6 命令 / hook / 测试）。
-- **即将**：打包为 **Claude Code plugin**——`claude plugin install` 一行装好，`/llm-wiki:init-wiki` 任意主题开箱即用，模板更新全员同步。
+打包为 **Claude Code plugin**，一行装好，任意主题开箱即用，模板更新全员同步：
+
+```bash
+claude plugin marketplace add <本仓库 git 地址或本地路径>
+claude plugin install kloom
+```
+
+装好后在任意目录运行 `/kloom:init-wiki <路径> <主题>` 即可。含完整 schema / 页面模板 / 6 命令 / SessionStart hook / 合规 linter / 测试。
 
 ---
 
