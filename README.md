@@ -14,16 +14,33 @@ timestamp: 2026-06-26T00:00:00Z
 一个会自己维护的知识库，打包为 **Claude Code plugin**。基于 OKF v0.1 + 卡帕西 LLM Wiki + v2 生命周期。
 完整介绍见 [PROMO.md](PROMO.md)。
 
-## 安装
+## 安装与更新
+
+### 方式 A：从 GitHub marketplace（推荐，给使用者）
 
 ```bash
-# 方式 1：从 marketplace（推荐）
+# 安装
 claude plugin marketplace add wangwe485/kloom
 claude plugin install kloom@kloom-marketplace
 
-# 方式 2：本地开发/试用
-claude --plugin-dir <本地 kloom 仓库路径>
+# 更新（两步缺一不可：先刷缓存，再应用）
+claude plugin marketplace update kloom-marketplace   # 从 GitHub 拉最新提交到本地缓存
+claude plugin update kloom                            # 应用新版（提示 restart 后重启会话生效）
 ```
+
+### 方式 B：本地文件夹（给开发 / 试用 / 离线）
+
+```bash
+# 安装：挂载本地仓库，仅当前会话有效
+git clone git@github.com:wangwe485/kloom.git   # 或直接把整个 kloom 文件夹拷到本地
+claude --plugin-dir <本地 kloom 路径>
+
+# 更新
+cd <本地 kloom 路径> && git pull                 # clone 来的用 pull；直接拷的则重新覆盖文件夹
+# 退出并重启 claude 会话即生效（--plugin-dir 每次启动都重新读取，无需 plugin update）
+```
+
+> 两种方式的命令前缀都是 `/kloom:`；版本号见 [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json)，发布点见 git tag `kloom--v*`。
 
 ## 命令
 
@@ -54,10 +71,11 @@ claude --plugin-dir <本地 kloom 仓库路径>
 
 ```
 kloom/
-├── .claude-plugin/plugin.json   manifest（name: kloom）
-├── commands/                     6 个 slash 命令 → /kloom:*
-├── templates/                    生成 wiki 时复制的全部文件（${CLAUDE_PLUGIN_ROOT}/templates）
-└── marketplace.json              内部分发清单
+├── .claude-plugin/
+│   ├── plugin.json              manifest（name: kloom）
+│   └── marketplace.json         分发清单（Claude Code 要求置于此目录）
+├── commands/                    6 个 slash 命令 → /kloom:*
+└── templates/                   生成 wiki 时复制的全部文件（${CLAUDE_PLUGIN_ROOT}/templates）
 ```
 
 ## 更多
