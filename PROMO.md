@@ -166,8 +166,8 @@ timestamp: 2026-06-26T00:00:00Z
 打包为 **Claude Code plugin**，一行装好，任意主题开箱即用，模板更新全员同步：
 
 ```bash
-claude plugin marketplace add <本仓库 git 地址或本地路径>
-claude plugin install kloom
+claude plugin marketplace add wangwe485/kloom
+claude plugin install kloom@kloom-marketplace
 ```
 
 装好后在任意目录运行 `/kloom:init-wiki <路径> <主题>` 即可。含完整 schema / 页面模板 / 6 命令 / SessionStart hook / 合规 linter / 测试。

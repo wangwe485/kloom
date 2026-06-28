@@ -17,9 +17,9 @@ timestamp: 2026-06-26T00:00:00Z
 ## 安装
 
 ```bash
-# 方式 1：从 marketplace（内部分发推荐）
-claude plugin marketplace add <本仓库 git 地址或本地路径>
-claude plugin install kloom
+# 方式 1：从 marketplace（推荐）
+claude plugin marketplace add wangwe485/kloom
+claude plugin install kloom@kloom-marketplace
 
 # 方式 2：本地开发/试用
 claude --plugin-dir <本地 kloom 仓库路径>
