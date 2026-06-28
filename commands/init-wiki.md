@@ -2,11 +2,22 @@
 description: 从模板新建一个 kloom 知识库并按主题定制
 argument-hint: <新 wiki 路径> <主题描述>
 ---
-从模板 `${CLAUDE_PLUGIN_ROOT}/templates` 复制骨架到 `$1` 指定路径，创建一个主题为 "$2..." 的新 kloom 知识库。
+从模板 `${CLAUDE_PLUGIN_ROOT}/templates` 复制骨架到 `$1`，创建一个主题为 "$2..." 的新 kloom 知识库。
+
+> **路径语义（务必照此理解，否则会建错层级）**：`$1` **就是新 wiki 的根目录本身**，不是父目录。
+> 主题 `$2` 只用于内容定制（领域 type / 描述），**绝不**拿来当目录名。
+> 复制完成后，`$1/CLAUDE.md`、`$1/wiki/`、`$1/raw/` 必须**直接**存在；
+> 若出现 `$1/$2/...`（主题名子目录）或 `$1/templates/...`（多套一层），即为错误，删掉重做。
 
 步骤：
 
-1. **复制**：把 `${CLAUDE_PLUGIN_ROOT}/templates` 的全部内容复制到新路径 `$1`，**排除 `.git`、`.obsidian`、`.DS_Store`**。
+1. **复制**：先确保根目录存在再把模板**内容**铺进去（用末尾 `/.` 复制目录内容而非目录本身，对 `$1` 是否已存在都确定）：
+   ```bash
+   mkdir -p "$1"
+   cp -R "${CLAUDE_PLUGIN_ROOT}/templates/." "$1/"
+   rm -f "$1/.DS_Store"          # 排除 .DS_Store；模板内无 .git/.obsidian，无需额外处理
+   ```
+   复制后**自检**：`ls "$1/CLAUDE.md" "$1/wiki"` 应都存在，且 `$1` 下**没有**名为 `$2` 或 `templates` 的子目录。
 2. **初始化 git**：在新路径 `git init`、设 `main` 分支；若用户无全局 `user.name`/`user.email`，设一个中性本地身份并在报告里提示用户改成自己的。
 3. **按主题定制**（核心，发挥你的理解）：
    - `CLAUDE.md §2 领域 type`：根据主题生成 5–8 个实体 type（小写 kebab-case，带一行说明 + 示例），替换占位注释 `<!-- /init-wiki 在此插入... -->`
@@ -27,6 +38,7 @@ argument-hint: <新 wiki 路径> <主题描述>
 9. 报告：新 wiki 路径、生成的领域 type 清单、自检结果（合规 + 首次 commit）、下一步（照生成的 `SETUP.md` 配 Obsidian + Claude Code + 首次 ingest）。
 
 硬约束：
+- **`$1` 即 wiki 根**：所有文件直接落在 `$1` 下，**绝不**新建 `$1/$2`（主题名）或 `$1/templates` 之类的嵌套目录。
 - **只写新路径 `$1`**，绝不修改模板源 `${CLAUDE_PLUGIN_ROOT}/templates`。
 - 保留通用 type（concept/source/synthesis/playbook/schema/index）不变，只动领域 type。
 - 所有新写/改写的 `timestamp` 用**今日真实日期**，不要照抄模板里的占位日期。
