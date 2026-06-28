@@ -22,7 +22,7 @@ argument-hint: <新 wiki 路径> <主题描述>
      "attachmentFolderPath": "raw/assets"
    }
    ```
-7. **OKF conformance 自检**：运行 `node .claude/hooks/lib/conformance.mjs $1`（退出码 0 = 全部知识 `.md` 有合法 frontmatter + 非空 `type`）。并扫一遍确认无残留 `{{占位}}` 或"通用模板/实例化"等模板态文案。
+7. **OKF conformance 自检**：运行 `node "$1/.claude/hooks/lib/conformance.mjs" "$1"`（退出码 0 = 全部知识 `.md` 有合法 frontmatter + 非空 `type`）。并扫一遍确认无残留 `{{占位}}` 或"通用模板/实例化"等模板态文案。
 8. **首次提交**：`git -C $1 add -A && git -C $1 commit -m "init $2 wiki"`，让实例落地为一个干净的初始 commit（不留半初始化状态）。
 9. 报告：新 wiki 路径、生成的领域 type 清单、自检结果（合规 + 首次 commit）、下一步（照生成的 `SETUP.md` 配 Obsidian + Claude Code + 首次 ingest）。
 
